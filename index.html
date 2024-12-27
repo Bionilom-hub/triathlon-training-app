@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triathlon Training Plan</title>
+    <title>Triathlon S Training Program</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,6 +27,9 @@
         }
         h2 {
             color: #333;
+        }
+        .week {
+            margin-bottom: 30px;
         }
         .day {
             margin-bottom: 20px;
@@ -57,106 +60,105 @@
         .checkbox {
             margin-left: 10px;
         }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .nav-button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Triathlon Training Plan</h1>
+        <h1>Triathlon S Training Program</h1>
     </header>
     <div class="container">
-        <h2>Your Weekly Plan</h2>
-        <div class="day" id="monday">
-            <h3>Monday: Natation - Endurance et technique</h3>
-            <ul>
-                <li>Échauffement : 400 m crawl facile</li>
-                <li>Série principale : 6x100 m à 90 % (1:48/100 m), 200 m éducatifs (travail sur la technique, comme le rattrapé ou le mouvement des jambes)</li>
-                <li>Retour au calme : 200 m crawl facile avec 2 min de récupération passive</li>
-            </ul>
-            <button onclick="markCompleted('monday')">Mark as Completed</button>
-            <input type="checkbox" class="checkbox" onclick="toggleCompleted('monday')">
-        </div>
-        <div class="day" id="tuesday">
-            <h3>Tuesday: Natation - Intensité</h3>
-            <ul>
-                <li>Échauffement : 300 m crawl facile + 4x50 m éducatifs (travail sur l’appui des mains ou la position du corps)</li>
-                <li>Série principale : 8x50 m sprint avec 45 sec de récupération active (nage lente ou repos complet)</li>
-                <li>Nage continue : 400 m à allure modérée</li>
-                <li>Retour au calme : 200 m facile avec 1-2 min de récupération</li>
-            </ul>
-            <button onclick="markCompleted('tuesday')">Mark as Completed</button>
-            <input type="checkbox" class="checkbox" onclick="toggleCompleted('tuesday')">
-        </div>
-        <div class="day" id="wednesday">
-            <h3>Wednesday: Natation - Volume</h3>
-            <ul>
-                <li>Échauffement : 500 m crawl + éducatifs (comme le crawl avec un seul bras ou le travail en hypoxie)</li>
-                <li>Série principale : 3x400 m à allure modérée avec 1 min de récupération entre chaque série</li>
-                <li>Retour au calme : 200 m facile</li>
-            </ul>
-            <button onclick="markCompleted('wednesday')">Mark as Completed</button>
-            <input type="checkbox" class="checkbox" onclick="toggleCompleted('wednesday')">
-        </div>
-        <div class="day" id="thursday">
-            <h3>Thursday: Natation - Transition et allures mixtes</h3>
-            <ul>
-                <li>Échauffement : 400 m crawl facile + 100 m éducatifs (travail des battements ou de la glisse)</li>
-                <li>Série principale : 4x200 m (2 modéré, 2 rapides) avec 30 sec de récupération + 8x50 m rapide/récupération active</li>
-                <li>Retour au calme : 200 m facile</li>
-            </ul>
-            <button onclick="markCompleted('thursday')">Mark as Completed</button>
-            <input type="checkbox" class="checkbox" onclick="toggleCompleted('thursday')">
-        </div>
-        <div class="day" id="friday">
-            <h3>Friday: Vélo ou Course</h3>
-            <ul>
-                <li><strong>Vélo :</strong> 5x4 min à 90-95 % FTP avec 2 min de récupération active</li>
-                <li>OU</li>
-                <li><strong>Course :</strong> 4x800 m à 12-14 km/h avec 90 sec de récupération active (marche ou jogging lent)</li>
-            </ul>
-            <button onclick="markCompleted('friday')">Mark as Completed</button>
-            <input type="checkbox" class="checkbox" onclick="toggleCompleted('friday')">
-        </div>
-        <div class="day" id="saturday">
-            <h3>Saturday: Cardio Complémentaire</h3>
-            <ul>
-                <li>Vélo ou course à allure modérée (30-45 min)</li>
-                <li>Alternativement : 4x4 min à effort soutenu avec récupération active</li>
-            </ul>
-            <button onclick="markCompleted('saturday')">Mark as Completed</button>
-            <input type="checkbox" class="checkbox" onclick="toggleCompleted('saturday')">
-        </div>
-        <div class="day" id="sunday">
-            <h3>Sunday: Cardio Long</h3>
-            <ul>
-                <li>Vélo ou course à allure modérée (1 h)</li>
-                <li>Option : 10-15 min à allure rapide en fin de session</li>
-            </ul>
-            <button onclick="markCompleted('sunday')">Mark as Completed</button>
-            <input type="checkbox" class="checkbox" onclick="toggleCompleted('sunday')">
+        <nav>
+            <a href="#" class="nav-button" id="prev-week">Previous Week</a>
+            <a href="#" class="nav-button" id="next-week">Next Week</a>
+        </nav>
+        <div id="week-container">
+            <!-- Weekly training details will be dynamically inserted here -->
         </div>
     </div>
     <script>
-        function markCompleted(dayId) {
-            const dayElement = document.getElementById(dayId);
-            dayElement.classList.add('completed');
-            const button = dayElement.querySelector('button');
-            button.disabled = true;
-            button.textContent = 'Completed';
+        const weeks = [
+            { weekNumber: 1, dates: "January 1 - January 7, 2025", days: [
+                { day: "Monday", activity: "Swim - Technique and Endurance", details: ["Warm-up: 400 m crawl", "Main set: 6x100 m at 90% effort + 200 m technique drills", "Cool down: 200 m easy"] },
+                { day: "Tuesday", activity: "Swim - Speed", details: ["Warm-up: 300 m crawl + drills", "Main set: 8x50 m sprint with 45s rest", "Cool down: 200 m easy"] },
+                { day: "Friday", activity: "Indoor Bike - Intervals", details: ["Warm-up: 10 min easy spin", "Main set: 6x3 min hard effort with 2 min recovery", "Cool down: 10 min easy"] },
+                { day: "Saturday", activity: "Run - Endurance", details: ["Warm-up: 10 min easy jog", "Main set: 5 km steady pace", "Cool down: 5 min walk"] },
+                { day: "Sunday", activity: "Brick Session", details: ["Bike: 30 min moderate pace", "Transition", "Run: 2 km easy pace"] }
+            ]},
+            { weekNumber: 2, dates: "January 8 - January 14, 2025", days: [
+                { day: "Monday", activity: "Swim - Technique", details: ["Warm-up: 400 m crawl", "Main set: 8x50 m drills", "Cool down: 200 m easy"] },
+                { day: "Tuesday", activity: "Swim - Endurance", details: ["Warm-up: 300 m crawl", "Main set: 4x200 m moderate pace", "Cool down: 200 m easy"] },
+                { day: "Wednesday", activity: "Swim - Speed", details: ["Warm-up: 300 m crawl", "Main set: 8x50 m sprints with 45s rest", "Cool down: 200 m easy"] },
+                { day: "Friday", activity: "Indoor Bike - Intervals", details: ["Warm-up: 10 min easy spin", "Main set: 7x3 min hard effort with 2 min recovery", "Cool down: 10 min easy"] },
+                { day: "Saturday", activity: "Run - Endurance", details: ["Warm-up: 10 min easy jog", "Main set: 6 km steady pace", "Cool down: 5 min walk"] },
+                { day: "Sunday", activity: "Brick Session", details: ["Bike: 35 min moderate pace", "Transition", "Run: 2.5 km easy pace"] }
+            ]},
+            { weekNumber: 3, dates: "January 15 - January 21, 2025", days: [
+                { day: "Monday", activity: "Swim - Endurance", details: ["Warm-up: 400 m crawl", "Main set: 5x200 m moderate pace", "Cool down: 200 m easy"] },
+                { day: "Tuesday", activity: "Swim - Speed", details: ["Warm-up: 300 m crawl", "Main set: 10x50 m sprint with 40s rest", "Cool down: 200 m easy"] },
+                { day: "Wednesday", activity: "Swim - Technique", details: ["Warm-up: 400 m crawl", "Main set: 10x50 m drills", "Cool down: 200 m easy"] },
+                { day: "Friday", activity: "Indoor Bike - Intervals", details: ["Warm-up: 10 min easy spin", "Main set: 8x3 min hard effort with 1:30 min recovery", "Cool down: 10 min easy"] },
+                { day: "Saturday", activity: "Run - Speed", details: ["Warm-up: 10 min easy jog", "Main set: 8x400 m at 14 km/h, rest 2 min", "Cool down: 5 min walk"] },
+                { day: "Sunday", activity: "Brick Session", details: ["Bike: 40 min moderate pace", "Transition", "Run: 3 km easy pace"] }
+            ]},
+            // Add weeks 4 through 20 here with a similar structure and progressive intensity
+        ];
+
+        let currentWeekIndex = 0;
+
+        function renderWeek(index) {
+            const week = weeks[index];
+            const weekContainer = document.getElementById('week-container');
+            weekContainer.innerHTML = `
+                <h2>Week ${week.weekNumber}: ${week.dates}</h2>
+                ${week.days.map(day => `
+                    <div class="day" id="day-${day.day.toLowerCase()}-w${week.weekNumber}">
+                        <h3>${day.day}: ${day.activity}</h3>
+                        <ul>
+                            ${day.details.map(detail => `<li>${detail}</li>`).join('')}
+                        </ul>
+                        <label>
+                            <input type="checkbox" class="checkbox" onclick="toggleCompleted('day-${day.day.toLowerCase()}-w${week.weekNumber}')"> Mark as Completed
+                        </label>
+                    </div>
+                `).join('')}
+            `;
         }
 
         function toggleCompleted(dayId) {
             const dayElement = document.getElementById(dayId);
-            const checkbox = dayElement.querySelector('.checkbox');
-
-            if (checkbox.checked) {
-                dayElement.classList.add('completed');
-            } else {
-                dayElement.classList.remove('completed');
-                const button = dayElement.querySelector('button');
-                button.disabled = false;
-                button.textContent = 'Mark as Completed';
-            }
+            dayElement.classList.toggle('completed');
         }
+
+        document.getElementById('prev-week').addEventListener('click', () => {
+            if (currentWeekIndex > 0) {
+                currentWeekIndex--;
+                renderWeek(currentWeekIndex);
+            }
+        });
+
+        document.getElementById('next-week').addEventListener('click', () => {
+            if (currentWeekIndex < weeks.length - 1) {
+                currentWeekIndex++;
+                renderWeek(currentWeekIndex);
+            }
+        });
+
+        renderWeek(currentWeekIndex);
     </script>
 </body>
 </html>
